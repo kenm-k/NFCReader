@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<title>NFCテスト</title>
+	<link rel="stylesheet" href="css.css">
+	<style>
+		body {
+			font-size: 16pt;
+			font-weight: bold;
+		}
+
+		h1 {
+			color: white;
+			padding: 5px;
+			font-size: 24pt;
+			background-color: rgb(0, 162, 255);
+		}
+
+		button {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 250px;
+			margin: 20px auto;
+			padding: .8em 2em;
+			border: none;
+			border-radius: 5px;
+			background-color: #2ea8ff;
+			color: #ffffff;
+			font-weight: 600;
+			font-size: 1em;
+		}
+
+		button:hover {
+			background-color: #7fcaff;
+		}
+
+		button:active {
+			background-color: #295f86;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div style="text-align: center;">
+		<h1>NFC読み取りシステム</h1>
+		<p>セキュリティに関する幾つかの重大な懸念事項があるため、現在データベースを停止しています。そのため、現在データベースを参照する機能はご利用いただけません。ご了承ください。</p>
+		<br>
+		<button onclick="WriteP('学生証を近づけてください');ScanNFC();">Scan!</button>
+		<br>
+		<p id="plog">ようこそ！</p>
+		<br>
+		<textarea id="log" style="width: 75%; height: 500px; display: none;"></textarea>
+	</div>
+	<div id="modal" class="modal">
+		<div class="modal-2__wrap" style="text-align: center;">
+			<input type="radio" id="modal-2__open" class="modal-2__open-input" name="modal-2__trigger" /
+				onclick="startCamera();" style="visibility: hidden;">
+			<label for="modal-2__open" class="modal-2__open-label" style="visibility: hidden;">モーダルを開く</label>
+			<input type="radio" id="modal-2__close" name="modal-2__trigger" />
+			<div class="modal-2">
+				<div class="modal-2__content-wrap">
+					<label for="modal-2__close" class="modal-2__close-label" onclick="cameraStop();">×</label>
+					<div class="modal-2__content">
+						ユーザを登録します。バーコードを写してください。
+						<div id="innerModal" style="margin: 10px;">
+						</div>
+						<br>
+						<!-- <button onclick="cameraPause();">読み込む</button> -->
+					</div>
+				</div>
+				<label for="modal-2__close">
+					<div class="modal-2__background" onclick="cameraStop();"></div>
+				</label>
+			</div>
+			<footer>
+				<p>var1.1.0</p>
+			</footer>
+		</div>
+	</div>
+
+	<script type="module" src="./firebaseApp.js"></script>
+	<script type="module" src="./NFCTest.js"></script>
+
+</body>
+
+</html>
