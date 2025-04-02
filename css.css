@@ -118,3 +118,14 @@
         max-width: 100%;
     }
 }
+
+@media(min-width:751px){
+    .sp{
+        display: none !important;
+    }
+}
+@media(max-width:750px){
+    .pc{
+        display: none !important;
+    }
+}
