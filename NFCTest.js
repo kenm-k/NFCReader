@@ -8,6 +8,8 @@ function GetUID() {
     return userID;
 }
 
+var scanning = false;
+
 const scan = async () => {
     try {
         const reader = new NDEFReader()
@@ -43,7 +45,11 @@ const scan = async () => {
 
 window.ScanNFC = () => {
     WriteLog("Pushed!");
-    scan();
+    if (!scanning)
+    {
+        scanning = true
+        scan();
+    }
 }
 
 window.WriteLog = (text) => {
@@ -72,6 +78,7 @@ async function Matching(id) {
 
     if (tempDoc != null) {
         WriteP(`あなたの学籍番号：${tempDoc.data().studentID}`);
+        scanning = false;
     }
     else {
         WriteP("見つかりませんでした、登録してください!");
@@ -140,6 +147,7 @@ async function cameraCheckStart() {
 
                 CloseModal();
                 WriteP("送信完了しました!");
+                scanning = false;
                 return;
             }
             else
